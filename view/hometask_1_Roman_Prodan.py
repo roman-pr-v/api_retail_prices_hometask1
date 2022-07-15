@@ -3,13 +3,18 @@ import requests
 
 RP_RESULT = "D:\\Work\\work_folder\\PythonWorkshop\\RP_result.csv"
 
-LOCATIONS = ('eastasia', 'southeastasia', 'centralus', 'eastus', 'eastus2', 'westus', 'northcentralus',
-             'southcentralus', 'northeurope', 'westeurope', 'japanwest', 'japaneast', 'brazilsouth', 'australiaeast',
-             'australiasoutheast',  'southindia', 'centralindia', 'westindia', 'canadacentral', 'canadaeast',
-             'uksouth', 'ukwest', 'westcentralus',  'westus2', 'koreacentral', 'koreasouth', 'francecentral',
-             'francesouth', 'australiacentral', 'australiacentral2', 'uaecentral', 'uaenorth', 'southafricanorth',
-             'southafricawest', 'switzerlandnorth', 'switzerlandwest', 'germanynorth', 'germanywestcentral',
-             'norwaywest', 'norwayeast', 'brazilsoutheast', 'westus3')
+LOCATIONS = (
+    'eastasia', 'southeastasia', 'centralus', 'eastus', 'eastus2', 'westus',
+    'northcentralus',    'southcentralus', 'northeurope', 'westeurope',
+    'japanwest', 'japaneast', 'brazilsouth', 'australiaeast',
+    'australiasoutheast',  'southindia', 'centralindia', 'westindia',
+    'canadacentral', 'canadaeast', 'uksouth', 'ukwest', 'westcentralus',
+    'westus2', 'koreacentral', 'koreasouth', 'francecentral', 'francesouth',
+    'australiacentral', 'australiacentral2', 'uaecentral', 'uaenorth',
+    'southafricanorth', 'southafricawest', 'switzerlandnorth', 'switzerlandwest',
+    'germanynorth', 'germanywestcentral', 'norwaywest', 'norwayeast',
+    'brazilsoutheast', 'westus3'
+)
 
 OPTION = "productName eq 'General Block Blob v2' and skuName eq 'Cool LRS'"
 
@@ -37,7 +42,11 @@ sumRetailPrices = sum(result_prices.values())
 lengthRetailPrices = len(result_prices.values())
 avgRetailPrices = sumRetailPrices/lengthRetailPrices
 
-additional_result = {'minPrice': minRetailPrices, 'maxPrices': maxRetailPrices, 'avgPrice': avgRetailPrices}
+additional_result = {
+    'minPrice': minRetailPrices,
+    'maxPrices': maxRetailPrices,
+    'avgPrice': avgRetailPrices
+}
 additional_result_keys = additional_result.keys()
 additional_result_values = additional_result.values()
 with open(RP_RESULT, "a", newline='') as csv_file:
