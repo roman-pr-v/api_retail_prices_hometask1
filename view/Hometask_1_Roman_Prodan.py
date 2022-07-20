@@ -1,7 +1,7 @@
 import csv
 import requests
 
-RP_RESULT = "D:\\Work\\work_folder\\PythonWorkshop\\RP_result.csv"
+RP_RESULT = "G:\\PythonWorkshop\\RP_result.csv"
 
 LOCATIONS = (
     'eastasia', 'southeastasia', 'centralus', 'eastus', 'eastus2', 'westus',
@@ -30,28 +30,16 @@ for location in LOCATIONS:
     for offer in data_items:
         SUM_RETAIL += offer['retailPrice']
         result_prices[location] = SUM_RETAIL
-        location_results = result_prices.keys()
-        retailPrices_results = result_prices.values()
 
-        with open(RP_RESULT, "w", encoding="utf8", newline='') as csv_file:
-            columns = [location_results, retailPrices_results]
-            writer = csv.DictWriter(csv_file, fieldnames=columns)
-            #writer = csv.writer(csv_file)
-            #writer.writeheader()
-            writer.writerows(result_prices)
-            #writer.writerows([location_results, retailPrices_results])
+location_results = result_prices.keys()
+retailPrices_results = result_prices.values()
 
-minRetailPrices = min(result_prices.values())
-maxRetailPrices = max(result_prices.values())
-sumRetailPrices = sum(result_prices.values())
-lengthRetailPrices = len(result_prices.values())
-avgRetailPrices = sumRetailPrices/lengthRetailPrices
-
-additional_result = [
-    ['minPrice', minRetailPrices],
-    ['maxPrices', maxRetailPrices],
-    ['avgPrice', avgRetailPrices]
-]
-with open(RP_RESULT, "a", encoding="utf8", newline='') as csv_file:
+with open(RP_RESULT, "w", encoding="utf8", newline='') as csv_file:
     writer = csv.writer(csv_file)
-    writer.writerows(additional_result)
+    writer.writerow(["location", "sum_prices"])
+    for key, value in result_prices.items():
+        writer.writerow([key, value])
+    writer.writerow(["maxPrice", max(result_prices.values())])
+    writer.writerow(["minPrice", min(result_prices.values())])
+    writer.writerow(["avgPrice", sum(result_prices.values())/len(result_prices.values())])
+
